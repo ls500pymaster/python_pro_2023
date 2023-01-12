@@ -21,7 +21,15 @@ if __name__ == '__main__':
 	assert parse('http://example.com/admin/new-cat?breed=british&color=white') == {'breed': 'british', 'color': 'white'}
 	assert parse('http://example.com/blog/about/cats?breed=scottish&color=all') == {'breed': 'scottish', 'color': 'all'}
 	assert parse('http://example.com/store/laptops/macbook?model=m2&color=all') == {'model': 'm2', 'color': 'all'}
-	assert parse('http://example.com/laptops/store/macbook?model=m2&color=all&ram=16gb') == {'model': 'm2', 'color': 'all', 'ram': '16gb'}
+	assert parse('http://example.com/laptops/store/macbook?model=m2&color=all&ram=16gb') == {'model': 'm2',
+	                                                                                         'color': 'all',
+	                                                                                         'ram': '16gb'}
+	assert parse('http://example.com/help?ide=pycharm&version=pro') == {'ide': 'pycharm', 'version': 'pro'}
+	assert parse('http://example.com/articles/python/flask/index.html') == {}
+	assert parse('http://example.com/main.html') == {}
+	assert parse('http://example.com/robots.txt') == {}
+	assert parse('http://example.com/logo.png') == {}
+	assert parse('http://example.com/templates/blog/avatar.jpg') == {}
 
 
 def parse_cookie(query: str) -> dict:
@@ -44,3 +52,12 @@ if __name__ == '__main__':
 	assert parse_cookie('suspension=pneumatic;WD=4WD;') == {'suspension': 'pneumatic', 'WD': '4WD'}
 	assert parse_cookie('crypto=btc=16500;status=bearmarket;') == {'crypto': 'btc=16500', 'status': 'bearmarket'}
 	assert parse_cookie('python=3.11;course=python_pro;') == {'python': '3.11', 'course': 'python_pro'}
+	assert parse_cookie('laptop=macbook;model=m3;year=2024') == {'laptop': 'macbook', 'model': 'm3', 'year': '2024'}
+	assert parse_cookie('age=25;backend=python;') == {'age': '25', 'backend': 'python'}
+	assert parse_cookie('time=now;year=2023;') == {'time': 'now', 'year': '2023'}
+	assert parse_cookie('ide=pycharm;version=pro;free=3 months;') == {'ide': 'pycharm', 'version': 'pro',
+	                                                                  'free': '3 months'}
+	assert parse_cookie('framework=django;mvc=true;year=2005;') == {'framework': 'django', 'mvc': 'true',
+	                                                                'year': '2005'}
+	assert parse_cookie('ssl=true;website=jetbrains;status=200;') == {'ssl': 'true', 'website': 'jetbrains',
+	                                                                  'status': '200'}
